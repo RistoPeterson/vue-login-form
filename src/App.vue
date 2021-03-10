@@ -40,7 +40,30 @@ body {
 }
 
 a {
-  color: inherit;
+  color:inherit;
+}
+
+input {
+ padding:3px 10px;
+ margin-right: 3px;
+ border: 2px solid #fff;
+ border-radius: 3px;
+}
+
+input[type=submit] {
+    padding:3px 10px;
+    color: #fff;
+    background: transparent;
+    cursor: pointer;
+    border: 2px solid #fff;
+}
+
+input[type=submit]:hover {
+    padding:3px 10px;
+    color: black;
+    background: #fff;
+    cursor: pointer;
+    border: 2px solid #fff;
 }
 
 </style>
