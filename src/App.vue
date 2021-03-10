@@ -1,30 +1,46 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
   <router-view/>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { onBeforeMount } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import firebase from 'firebase';
 
-#nav {
-  padding: 30px;
+export default {
+  setup () {
+    const router = useRouter();
+    const route = useRoute();
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+    onBeforeMount(() => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+          router.replace('/login');
+        } else if (route.path == "/login" || route.path == "/register") {
+          router.replace('/Home');
+        }
+      });
+    });
   }
 }
+</script>
+
+<style lang="scss">
+
+body {
+  background: rgba($color: #c78306, $alpha: 1.0);
+  color: #fff;
+}
+
+#app {
+  font-family: Avenir, Helvetica, sans-serif;
+  --webkit-font-smoothing: antialiased;
+  --moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+
+a {
+  color: inherit;
+}
+
 </style>
