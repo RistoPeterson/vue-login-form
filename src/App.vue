@@ -17,7 +17,7 @@ export default {
         if (!user) {
           router.replace('/login');
         } else if (route.path == "/login" || route.path == "/register") {
-          router.replace('/Home');
+          router.replace('/');
         }
       });
     });

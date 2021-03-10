@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="register">
      <h1>Register</h1>
      <form @submit.prevent="Register">
          <input type="text" placeholder="Email" v-model="email" />
@@ -22,7 +22,7 @@ export default {
   const Register = () => {
         firebase
           .auth()
-          .signInWithEmailAndPassword(email.value, password.value)
+          .createUserWithEmailAndPassword(email.value, password.value)
           .then(user => {
             alert(user);
           })
